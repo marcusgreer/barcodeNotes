@@ -2,8 +2,8 @@
 import processing.sound.*;
 
 //String song = "AAACDDDEFFEDEAABCCDEAACBBCAB";//pirates
-String song = "nE5 nE5 nE5 nC5 nE5 nG5 nG4 nC5 nG4 nE3 nA4 nB4 #A4 nA4 " + 
-              "nG4 nE5 nG5 nA5 nF5 nG5 nE5 nC5 nD5 nB5 ";
+String song = "nE5 nE5 nE5 nC5 nE5 nG5 nG4 nC5 nG4 nE4 nA4 nB4 #A4 nA4 " + 
+              "nG4 nE5 nG5 nA5 nF5 nG5 nE5 nC5 nD5 nB4 ";
 
 
 HashMap<String,Integer> noteFrequencies = new HashMap<String, Integer>();
@@ -121,14 +121,14 @@ float noteToFreq(String note, int octaveChange) {
   System.out.println(note);
   Integer noteOffset = noteFrequencies.get(note);
   System.out.println(noteOffset);
-  float freq = 440 * pow(2,(float(noteOffset)/12)); // offset to frequency formula
+  float freq = 440 * pow(2,(float(noteOffset + 12 * octaveChange)/12)); // offset to frequency formula
   System.out.println(freq);
   return freq;
 }
 
 void mousePressed(){
   String currentNote = song.substring(indexInSong,indexInSong+4);
-  float currentFreq = noteToFreq(currentNote, 0);
+  float currentFreq = noteToFreq(currentNote, 2);
   signalStartFrame = frameCount;
   sine.freq(currentFreq);
   sine.play();
